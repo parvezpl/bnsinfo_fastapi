@@ -1,0 +1,22 @@
+# Env files
+.env
+
+# IDE
+.idea/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual env
+venv/
+
+# Lock files (optional)
+uv.lock
+
+# Test files (optional)
+test_main.http
+
+# OS files
+.DS_Store
+Thumbs.db
