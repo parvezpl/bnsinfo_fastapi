@@ -3,7 +3,13 @@ import threading
 
 from app.database.qdrant import initialize_qdrant
 
+from app.routes import search 
+from app.services import qdrant_service 
+
 app = FastAPI()
+
+app.include_router(search.router) 
+app.include_router(qdrant_service.router)
 
 def background_init():
     print("Initializing Qdrant in background...")
