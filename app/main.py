@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 
-from app.database.qdrant import initialize_qdrant
-from app.routes import search
-from app.services import qdrant_service
+#from app.database.qdrant import initialize_qdrant
+#from app.routes import search
+#from app.services import qdrant_service
 
 app = FastAPI()
 
-app.include_router(search.router)
-app.include_router(qdrant_service.router)
+#app.include_router(search.router)
+#app.include_router(qdrant_service.router)
 
 def background_init():
     print("Initializing Qdrant in background...")
@@ -15,8 +15,8 @@ def background_init():
     print("Qdrant Ready ✅")
 
 
-@app.on_event("startup")
-def start_background_task():
+#@app.on_event("startup")
+#def start_background_task():
     thread = threading.Thread(target=background_init)
     thread.start()
 
