@@ -8,8 +8,8 @@ from app.database.qdrant import initialize_qdrant
 
 app = FastAPI()
 
-app.include_router(search.router) 
-app.include_router(qdrant_service.router)
+# app.include_router(search.router) 
+# app.include_router(qdrant_service.router)
 
 # 🔥 Background Initialization (Non-blocking)
 def background_init():
@@ -19,7 +19,6 @@ def background_init():
         print("Qdrant Ready ✅")
     except Exception as e:
         print("Qdrant Init Error:", e)
-
 
 # 🚀 Startup Event (Render-safe)
 @app.on_event("startup")
