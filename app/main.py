@@ -1,22 +1,17 @@
 from fastapi import FastAPI
+import threading
 
-#from app.database.qdrant import initialize_qdrant
-#from app.routes import search
-#from app.services import qdrant_service
+from app.database.qdrant import initialize_qdrant
 
 app = FastAPI()
-
-#app.include_router(search.router)
-#app.include_router(qdrant_service.router)
 
 def background_init():
     print("Initializing Qdrant in background...")
     initialize_qdrant()
     print("Qdrant Ready ✅")
 
-
-#@app.on_event("startup")
-#def start_background_task():
+@app.on_event("startup")
+async def start_background_task():
     thread = threading.Thread(target=background_init)
     thread.start()
 
@@ -24,7 +19,6 @@ def background_init():
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
-
 
 @app.get("/hello/{name}")
 async def say_hello(name: str):
